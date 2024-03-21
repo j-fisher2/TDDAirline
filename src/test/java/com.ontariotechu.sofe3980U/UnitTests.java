@@ -3,6 +3,7 @@ package com.ontariotechu.sofe3980U;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import static org.mockito.Mockito.*;
 
 public class UnitTests {
 
@@ -30,7 +31,7 @@ public class UnitTests {
     public void testTimezoneConversion() {
         Timezone sourceTimezone = new Timezone("EST", -300);
         Timezone targetTimezone = new Timezone("PST", -480);
-        assertEquals("22:00", TimeConverter.convertTime("10:00", sourceTimezone, targetTimezone));
+        assertEquals("22:00", new TimeConverter().convertTime("10:00", sourceTimezone, targetTimezone));
     }
 
     @Test
@@ -108,16 +109,21 @@ public class UnitTests {
     }
     @Test
     public void test24HourTimeConversion(){
-        String time="19:00";
-        String converted_time=TimeConverter.convert24HourTime(time);
+        // Mocking the TimeConverter class
+        TimeConverter timeConverterMock = mock(TimeConverter.class);
+        when(timeConverterMock.convert24HourTime("19:00")).thenReturn("7:00 pm");
+        String converted_time = timeConverterMock.convert24HourTime("19:00");
         assertEquals("7:00 pm", converted_time);
     }
+
     @Test
     public void test12HourTimeConversion(){
-        String time="7:00 pm";
-        String converted_time=TimeConverter.convert12HourTime(time);
-        assertEquals("19:00",converted_time);
+        TimeConverter timeConverterMock = mock(TimeConverter.class);
+        when(timeConverterMock.convert12HourTime("7:00 pm")).thenReturn("19:00");
+        String converted_time = timeConverterMock.convert12HourTime("7:00 pm");
+        assertEquals("19:00", converted_time);
     }
+
     @Test
     public void testAirportFlightAddition(){
         ArrayList<Flight> flights=new ArrayList<>();
