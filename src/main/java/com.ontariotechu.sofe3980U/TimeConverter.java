@@ -5,13 +5,13 @@ import java.util.Date;
 
 //logic to be implemented later TDD
 public class TimeConverter {
-    public static String convertTime(String inputTime, Timezone sourceTimezone, Timezone targetTimezone) {
+    public String convertTime(String inputTime, Timezone sourceTimezone, Timezone targetTimezone) {
         return "22:00";
     }
-    public static String convert24HourTime(String inputTime){
+    public String convert24HourTime(String inputTime){
         return "7:00 pm";
     }
-    public static String convert12HourTime(String inputTime){
+    public String convert12HourTime(String inputTime){
         return "19:00";
     }
 }
