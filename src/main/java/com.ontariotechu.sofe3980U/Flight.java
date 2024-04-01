@@ -17,6 +17,9 @@ public class Flight {
                     if(departureAirport==arrivalAirport){
                         throw new IllegalArgumentException("Cyclic trip");
                     }
+                    if (departureAirport == null || arrivalAirport == null) {
+                        throw new IllegalArgumentException("Departure or arrival airport cannot be null");
+                    }
         this.flightNumber = flightNumber;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
