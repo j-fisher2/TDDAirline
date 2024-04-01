@@ -1,10 +1,81 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Ticket Booking</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <style>
+        body{  
+            margin: 0;  
+            padding: 0;  
+            background-image : url('https://c4.wallpaperflare.com/wallpaper/656/169/227/sea-the-sky-flight-the-city-wallpaper-preview.jpg'); 
+            background-size : cover;
+            font-family: 'Arial';  
+        }  
+        .login{  
+                width: 382px;  
+                overflow: hidden;  
+                margin: auto;  
+                margin: 20 0 0 450px;  
+                padding: 80px;  
+                background: #23463f;  
+                border-radius: 15px ;  
+                display:flex;
+                justify-content: center;
+                align-items: center;
+        }  
+        h2{  
+            text-align: center;  
+            color: black;  
+            padding: 20px;  
+        }  
+        label{  
+            color: white;  
+            font-size: 17px;  
+        }  
+        #Uname{  
+            width: 300px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 3px;  
+            padding-left: 8px;  
+        }  
+        #Pass{  
+            width: 300px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 3px;  
+            padding-left: 8px;  
+            
+        }  
+        #log{  
+            width: 300px;  
+            height: 30px;  
+            border: none;  
+            border-radius: 17px;  
+            padding-left: 7px;  
+            color: blue;  
+        
+        
+        }  
+        span{  
+            color: white;  
+            font-size: 17px;  
+        }  
+        a{  
+            float: right;  
+            background-color: grey;  
+        }  
+
+    </style>
 </head>
-<body>
-    <p th:text="'Hello ' + ${name} + '!'" />
+<body> 
+    <h2>123Tickets</h2><br>
+    <div class="login">    
+        <form id="login"  action="http://localhost:1090/search">
+        <h4 style="color:white">Welcome</h4>    
+            <button class="btn btn-primary">Search Flights</button>
+        </form>     
+    </div> 
 </body>
 </html>

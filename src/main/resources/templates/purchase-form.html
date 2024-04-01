@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Form</title>
+    <!-- Link Bootstrap CSS -->
+    <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 0;
+        }
+        button[type="submit"] {
+            border-radius: 0;
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Enter Credit Card Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/tickets" method="post">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expirationDate">Expiration Date</label>
+                                <input type="text" class="form-control" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Enter CVV" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardHolderName">Card Holder Name</label>
+                                <input type="text" class="form-control" id="cardHolderName" name="cardHolderName" placeholder="Enter card holder name" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit Payment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional: Include Bootstrap JS if needed -->
+</body>
+</html>

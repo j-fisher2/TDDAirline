@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Search Results</title>
+    <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search Results</title>
+    <!-- Link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS if any -->
+    <style>
+        /* Add your custom CSS here */
+        .table-row:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Flight Search Results</h1>
+        <form id="purchaseForm" th:action="@{/purchase}" method="post">
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Flight Number</th>
+                        <th>Departure Airport</th>
+                        <th>Arrival Airport</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Flight Duration</th>
+                        <th>Departure Timezone</th>
+                        <th>Arrival Timezone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterate over the search results and display each flight -->
+                    <tr th:each="flight : ${searchResults}" class="table-row">
+                        <td>
+                            <input type="checkbox" name="selectedFlights" th:value="${flight.flightNumber}" th:attr="data-departing=${flight.getDepartureTime()}">
+                        </td>
+                        <td th:text="${flight.flightNumber}" class="table-cell"></td>
+                        <td th:text="${flight.departureAirport.getCode()}" class="table-cell"></td>
+                        <td th:text="${flight.arrivalAirport.getCode()}" class="table-cell"></td>
+                        <td th:text="${flight.getDepartureTime()}" class="table-cell"></td>
+                        <td th:text="${flight.getArrivalTime()}" class="table-cell"></td>
+                        <td th:text="${flight.getFlightDuration()}" class="table-cell"></td>
+                        <td th:text="${flight.getDepartureTimezone().getTimezoneName()}" class="table-cell"></td>
+                        <td th:text="${flight.getArrivalTimezone().getTimezoneName()}" class="table-cell"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Purchase Selected Flights</button>
+            <button class="btn btn-primary" id="back">Back</button>
+        </form>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        // When the form is submitted
+        $('#purchaseForm').submit(function(event) {
+            // Get all selected flight numbers and departing times
+            var selectedFlights = [];
+            $('input[name="selectedFlights"]:checked').each(function() {
+                var flightNumber = $(this).val();
+                var departingTime = $(this).data('departing');
+                selectedFlights.push({ flightNumber: flightNumber, departingTime: departingTime });
+            });
+            if (selectedFlights.length == 0) {
+                event.preventDefault();
+            }
+
+            // Store selected flights in local storage
+            localStorage.setItem('selectedFlights', JSON.stringify(selectedFlights));
+        });
+
+        $('#back').click(() => {
+            window.location.replace("/search");
+        });
+    </script>
+</body>
+
+</html>
